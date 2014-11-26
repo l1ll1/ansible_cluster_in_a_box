@@ -1,3 +1,4 @@
+testing testing 123
 ---
 
 # First we need hostname -f to return the correct domain
@@ -67,21 +68,21 @@
       - { role: slurm, slurm_use_vpn: true} # change to false if you are on a secure network
       - { role: test_user }
 
-# These tasks build some software (slurm, munge and openmpi) and copy them back to localhost. Skip if you have some other way of getting 
-# copyies of these software
-
-- hosts: ComputeNodes[0]
-  vars:
-    openmpi_version: 1.8.3
-  roles:
-    - { role: openmpi-build }
-
-# Slurm and openmpi tasks assume copies of the software in /tmp under a very specific directory strucutre (created by the build tasks above) Modifiy 
-# the roles if you have a different way of installing the software
-
-- hosts: ComputeNodes:ManagmentNodes:LoginNodes
-  vars:
-    openmpi_version: 1.8.3
-  roles:
-      - { role: openmpi }
-
+        ## These tasks build some software (slurm, munge and openmpi) and copy them back to localhost. Skip if you have some other way of getting 
+        ## copyies of these software
+        #
+        #- hosts: ComputeNodes[0]
+        #  vars:
+        #    openmpi_version: 1.8.3
+        #  roles:
+        #    - { role: openmpi-build }
+        #
+        ## Slurm and openmpi tasks assume copies of the software in /tmp under a very specific directory strucutre (created by the build tasks above) Modifiy 
+        ## the roles if you have a different way of installing the software
+        #
+        #- hosts: ComputeNodes:ManagmentNodes:LoginNodes
+        #  vars:
+        #    openmpi_version: 1.8.3
+        #  roles:
+        #      - { role: openmpi }
+        #
